@@ -1,0 +1,8 @@
+@mixin sample($color: #fff, $fSize: 10px) {
+  color: $color;
+  font-size: $fSize;
+}
+
+.text {
+  @include sample(red, 40px);
+}
