@@ -8,7 +8,7 @@ export type User = {
   role: UserRole;
 };
 
-export const roleName = (user: User): String => {
+export const roleName = (user: User): string => {
   switch (user.role) {
     case ADMIN:
       return "Admin User";
