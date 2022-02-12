@@ -1,4 +1,5 @@
 import useSWR from "swr";
+import Link from "next/link";
 
 type Item = {
   id: number;
@@ -22,9 +23,11 @@ export default function Index() {
       <p>Items</p>
       {data.map((item) => {
         return (
-          <p key={item.id}>
-            {item.id} | {item.name}
-          </p>
+          <Link key={item.id} href={`/item/${item.id}`} passHref>
+            <p key={item.id}>
+              {item.id} | {item.name}
+            </p>
+          </Link>
         );
       })}
     </div>
