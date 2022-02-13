@@ -1,15 +1,9 @@
-import useSWR from "swr";
 import Link from "next/link";
 import { Header } from "../../components/header";
-
-type Item = {
-  id: number;
-  name: string;
-};
+import { useItemList } from "../../usecases/Item/useItemList";
 
 export default function Index() {
-  const fetcher = (...args) => fetch(...args).then((res) => res.json());
-  const { data, error } = useSWR<Item[]>("/api/item", fetcher);
+  const { data, error } = useItemList();
 
   if (error) {
     return <>error</>;

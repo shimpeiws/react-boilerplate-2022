@@ -1,19 +1,12 @@
 import { useRouter } from "next/router";
-import useSWR from "swr";
 import Link from "next/link";
 import { Header } from "../../components/header";
-
-type Item = {
-  id: number;
-  name: string;
-  description: string;
-};
+import { useItemDetail } from "../../usecases/Item/useItemDetail";
 
 export default function Detail() {
   const router = useRouter();
   const { id } = router.query;
-  const fetcher = (...args) => fetch(...args).then((res) => res.json());
-  const { data, error } = useSWR<Item>(`/api/item/${id}`, fetcher);
+  const { data, error } = useItemDetail({ id });
 
   if (error) {
     return <>error</>;
