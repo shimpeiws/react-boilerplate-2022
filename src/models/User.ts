@@ -1,6 +1,11 @@
 const ADMIN = "Admin";
 const MEMBER = "Member";
-export type UserRole = ADMIN | MEMBER;
+
+export const UserRole = {
+  ADMIN: ADMIN,
+  MEMBER: MEMBER,
+} as const;
+export type UserRole = typeof UserRole[keyof typeof UserRole];
 
 export type User = {
   id: number;
@@ -8,8 +13,8 @@ export type User = {
   role: UserRole;
 };
 
-export const roleName = (user: User): string => {
-  switch (user.role) {
+export const roleName = (userRole: UserRole): string => {
+  switch (userRole) {
     case ADMIN:
       return "Admin User";
     case MEMBER:

@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import Link from "next/link";
+import { Header } from "../../components/header";
 
 type Item = {
   id: number;
@@ -24,6 +25,7 @@ export default function Detail() {
 
   return (
     <div>
+      <Header />
       <Link href="/item">BackToIndex</Link>
       <p>Item Detail {id}</p>
       <p>id | {data.id}</p>
