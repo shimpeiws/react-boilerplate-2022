@@ -11,6 +11,11 @@ type ItemDetailResponse = {
   description: string;
 };
 
+export type ItemCreateParameter = {
+  name: string;
+  description: string;
+};
+
 export const useItemRepository = () => {
   const getItemList = async (): Promise<Item[]> => {
     const res = await fetch("/api/item");
@@ -32,8 +37,19 @@ export const useItemRepository = () => {
       description: resData.description,
     };
   };
+
+  const postItem = async (params: ItemCreateParameter): Promise<void> => {
+    await fetch("/api/item/new", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(params),
+    });
+  };
   return {
     getItemList,
     getItemDetail,
+    postItem,
   };
 };
