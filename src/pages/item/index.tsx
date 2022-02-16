@@ -17,6 +17,9 @@ export default function Index() {
     <div>
       <Header />
       <p>Items</p>
+      <div>
+        <Link href={"/item/new"}>New Item</Link>
+      </div>
       {data.map((item) => {
         return (
           <Link key={item.id} href={`/item/${item.id}`} passHref>

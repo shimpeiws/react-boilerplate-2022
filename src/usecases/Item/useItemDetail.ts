@@ -1,5 +1,5 @@
 import { useItemRepository } from "../../repositories/ItemRepository";
-import { User } from "../../models/User";
+import { Item } from "../../models/Item";
 import { generateItemDetailKey } from "./itemCacheKeyGenerator";
 import useSWR from "swr";
 
@@ -10,7 +10,7 @@ type ItemDetailQuery = {
 export const useItemDetail = (query: ItemDetailQuery) => {
   const itemRepository = useItemRepository();
 
-  return useSWR<User[]>(generateItemDetailKey(query.id), () =>
+  return useSWR<Item[]>(generateItemDetailKey(query.id), () =>
     itemRepository.getItemDetail(query.id)
   );
 };

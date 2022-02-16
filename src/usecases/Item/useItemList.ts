@@ -1,12 +1,12 @@
 import { useItemRepository } from "../../repositories/ItemRepository";
-import { User } from "../../models/User";
+import { Item } from "../../models/Item";
 import { generateItemIndexKey } from "./itemCacheKeyGenerator";
 import useSWR from "swr";
 
 export const useItemList = () => {
   const itemRepository = useItemRepository();
 
-  return useSWR<User[]>(generateItemIndexKey(), () =>
+  return useSWR<Item[]>(generateItemIndexKey(), () =>
     itemRepository.getItemList()
   );
 };
