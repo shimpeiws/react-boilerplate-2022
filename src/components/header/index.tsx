@@ -1,6 +1,5 @@
 import { useUserState } from "../../globalStates/User";
-import { roleName } from "../../models/User";
-import Link from "next/link";
+import { HeaderContents } from "./HeaderContents";
 
 export const Header = (): ReactElement => {
   const userState = useUserState();
@@ -8,14 +7,7 @@ export const Header = (): ReactElement => {
 
   return (
     <>
-      <div>
-        <Link href="/">TOP</Link>
-      </div>
-      {user && (
-        <p>
-          {user.name} | {roleName(user.role)}
-        </p>
-      )}
+      <HeaderContents user={{ user }} />
     </>
   );
 };
