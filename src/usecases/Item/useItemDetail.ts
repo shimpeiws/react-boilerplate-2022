@@ -10,7 +10,7 @@ type ItemDetailQuery = {
 export const useItemDetail = (query: ItemDetailQuery) => {
   const itemRepository = useItemRepository();
 
-  return useSWR<Item[]>(generateItemDetailKey(query.id), () =>
+  return useSWR<Item>(generateItemDetailKey(query.id), () =>
     itemRepository.getItemDetail(query.id)
   );
 };
