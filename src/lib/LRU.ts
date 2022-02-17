@@ -5,10 +5,14 @@ class LRUClass {
   private static _cache: LRU<unknown, unknown>;
 
   private constructor() {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     this._cache = new LRU({
       max: 500,
     });
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     this._cache.set(
       "items",
       JSON.stringify([
@@ -23,6 +27,8 @@ class LRUClass {
   }
 
   public get cache() {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     return this._cache;
   }
 }

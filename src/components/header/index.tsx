@@ -1,3 +1,4 @@
+import { ReactElement } from "react";
 import { useUserState } from "../../globalStates/User";
 import { HeaderContents } from "./HeaderContents";
 
@@ -7,7 +8,7 @@ export const Header = (): ReactElement => {
 
   return (
     <>
-      <HeaderContents user={{ user }} />
+      <HeaderContents user={user} />
     </>
   );
 };

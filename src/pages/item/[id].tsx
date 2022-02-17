@@ -11,7 +11,7 @@ export default function Detail() {
     <div>
       <Header />
       <Link href="/item">BackToIndex</Link>
-      <ItemDetail id={id} />
+      <ItemDetail id={id as unknown as number} />
     </div>
   );
 }

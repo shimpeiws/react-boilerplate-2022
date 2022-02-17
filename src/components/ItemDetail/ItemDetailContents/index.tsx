@@ -1,10 +1,13 @@
+import { ReactElement } from "react";
 import { Item } from "../../../models/Item";
 
 export type ItemDetailContentsProps = {
   item: Item;
 };
 
-export const ItemDetailContents = (props: Props): React.ReactHTMLElement => {
+export const ItemDetailContents = (
+  props: ItemDetailContentsProps
+): ReactElement => {
   const { item } = props;
   return (
     <>
