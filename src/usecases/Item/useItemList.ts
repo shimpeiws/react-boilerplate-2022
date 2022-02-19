@@ -1,7 +1,7 @@
-import { useItemRepository } from "../../repositories/ItemRepository";
-import { Item } from "../../models/Item";
-import { generateItemIndexKey } from "./itemCacheKeyGenerator";
 import useSWR from "swr";
+import { Item } from "../../models/Item";
+import { useItemRepository } from "../../repositories/ItemRepository";
+import { generateItemIndexKey } from "./itemCacheKeyGenerator";
 
 export const useItemList = () => {
   const itemRepository = useItemRepository();

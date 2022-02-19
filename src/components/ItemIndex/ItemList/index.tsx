@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
-import { ItemRow } from "../ItemRow";
 import { Item } from "../../../models/Item";
+import { ItemRow } from "../ItemRow";
 
 export type ItemListProps = {
   items: Item[];

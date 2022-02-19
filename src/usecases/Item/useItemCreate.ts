@@ -1,9 +1,9 @@
+import { useSWRConfig } from "swr";
 import {
   useItemRepository,
   ItemCreateParameter,
 } from "../../repositories/ItemRepository";
 import { generateItemIndexKey } from "./itemCacheKeyGenerator";
-import { useSWRConfig } from "swr";
 
 export const useItemCreate = () => {
   const { mutate } = useSWRConfig();

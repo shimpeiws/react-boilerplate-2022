@@ -1,5 +1,5 @@
-import { ItemList } from "./index";
 import { Item } from "./../../../models/Item";
+import { ItemList } from "./index";
 
 const exportObject = {
   component: ItemList,

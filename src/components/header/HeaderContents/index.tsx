@@ -1,6 +1,6 @@
+import Link from "next/link";
 import { roleName } from "../../../models/User";
 import { User } from "../../../models/User";
-import Link from "next/link";
 
 export type HeaderContentsProps = {
   user: User;

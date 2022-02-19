@@ -2,6 +2,7 @@ root: true
 parser: "@typescript-eslint/parser"
 plugins:
   - "@typescript-eslint"
+  - import
   - jest
 extends:
   - eslint:recommended
@@ -9,5 +10,15 @@ extends:
   - next/core-web-vitals
   - plugin:@typescript-eslint/eslint-recommended
   - plugin:@typescript-eslint/recommended
+  - plugin:import/errors
   - plugin:jest/recommended
   - prettier
+settings:
+  import/resolver:
+    node:
+      extensions:
+        - .ts
+        - .tsx
+rules:
+  sort-imports: 0
+  import/order: [2, { "alphabetize": { "order": "asc" } }]

@@ -1,7 +1,7 @@
-import React from "react";
 import { render } from "@testing-library/react";
-import Index from "../../src/pages";
+import React from "react";
 import { RecoilRoot } from "recoil";
+import Index from "../../src/pages";
 
 test("show index", () => {
   const { getByTestId } = render(
