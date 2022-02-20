@@ -27,6 +27,7 @@ export const ItemForm = (): ReactElement => {
       name: data.name,
       description: data.description,
     });
+    // TODO: invalidate swr cache
     router.push("/item");
   };
 
@@ -35,15 +36,15 @@ export const ItemForm = (): ReactElement => {
       <p>Item/New</p>
       <div>
         <p>name</p>
-        <input {...register("name")} />
+        <input data-testid="input-name" {...register("name")} />
         {errors.name && <p>{errors.name.message}</p>}
       </div>
       <div>
         <p>description</p>
-        <input {...register("description")} />
+        <inp data-testid="input-description" {...register("description")} />
         {errors.description && <p>{errors.description.message}</p>}
       </div>
-      <input type="submit" />
+      <input data-testid="submit-button" type="submit" />
     </form>
   );
 };
