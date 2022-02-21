@@ -1,24 +1,33 @@
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, act, waitFor } from "@testing-library/react";
+import { rest } from "msw";
 import { setupServer } from "msw/node";
 import New from "../../../src/pages/item/new";
 import { ComponentWrapper } from "../../util/ComponentWrapper";
-import { mockRouter, mockRouter } from "../../util/MockRouter";
 
 const mockServerWithSuccess = setupServer();
+const mockPush = jest.fn();
+jest.mock("next/router", () => ({
+  useRouter() {
+    return {
+      push: mockPush,
+    };
+  },
+}));
 
 describe("Item New", () => {
   beforeAll(() => mockServerWithSuccess.listen());
-  afterEach(() => mockServerWithSuccess.resetHandlers());
+  afterEach(() => {
+    mockServerWithSuccess.resetHandlers();
+    jest.clearAllMocks();
+  });
   afterAll(() => mockServerWithSuccess.close());
 
   test("POST new item", async () => {
     mockServerWithSuccess.use(
-      rest.post("/api/item", (req, res, ctx) => {
+      rest.post("/api/item/new", (req, res, ctx) => {
         return res(ctx.status(200), ctx.json({}));
       })
     );
-
-    const router = mockRouter();
 
     const { findByTestId } = render(
       <ComponentWrapper>
@@ -26,16 +35,20 @@ describe("Item New", () => {
       </ComponentWrapper>
     );
 
-    // Input Form
-    const inputNameElement = await findByText("input-name");
-    const inputDescriptionElement = await findByText("input-description");
-    fireEvent.change(inputNameElement, { target: { value: "foo" } });
-    fireEvent.change(inputDescriptionElement, { target: { value: "bar" } });
+    await act(async () => {
+      // Input Form
+      const inputNameElement = await findByTestId("input-name");
+      const inputDescriptionElement = await findByTestId("input-description");
+      fireEvent.change(inputNameElement, { target: { value: "foo" } });
+      fireEvent.change(inputDescriptionElement, { target: { value: "bar" } });
 
-    // Click Submit Form
-    const submitButtonElement = await findByText("input-description");
-    fireEvent.change(submitButtonElement, new MouseEvent("click"));
+      // Click Submit Form
+      const submitButtonElement = await findByTestId("submit-button");
+      fireEvent.submit(submitButtonElement);
+    });
 
-    expect(await findByText("name")).toBeInTheDocument();
+    await waitFor(() => {
+      expect(mockPush).toHaveBeenCalledWith("/item");
+    });
   });
 });

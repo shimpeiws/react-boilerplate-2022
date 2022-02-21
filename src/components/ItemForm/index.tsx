@@ -22,12 +22,10 @@ export const ItemForm = (): ReactElement => {
   const router = useRouter();
 
   const onSubmit = async (data: z.infer<typeof schema>) => {
-    console.log("data", data);
     await createItem({
       name: data.name,
       description: data.description,
     });
-    // TODO: invalidate swr cache
     router.push("/item");
   };
 
@@ -41,7 +39,7 @@ export const ItemForm = (): ReactElement => {
       </div>
       <div>
         <p>description</p>
-        <inp data-testid="input-description" {...register("description")} />
+        <input data-testid="input-description" {...register("description")} />
         {errors.description && <p>{errors.description.message}</p>}
       </div>
       <input data-testid="submit-button" type="submit" />
