@@ -19,6 +19,10 @@ export type ItemCreateParameter = {
 export const useItemRepository = () => {
   const getItemList = async (): Promise<Item[]> => {
     const res = await fetch("/api/item");
+    if (!res.ok) {
+      throw new Error(res.statusText);
+      return;
+    }
     const resData = (await res.json()) as ItemListResponseObject[];
     return resData.map((item) => {
       return {
@@ -30,6 +34,10 @@ export const useItemRepository = () => {
 
   const getItemDetail = async (id: number): Promise<Item> => {
     const res = await fetch(`/api/item/${id}`);
+    if (!res.ok) {
+      throw new Error(res.statusText);
+      return;
+    }
     const resData = (await res.json()) as ItemDetailResponse;
     return {
       id: resData.id,
@@ -39,13 +47,17 @@ export const useItemRepository = () => {
   };
 
   const postItem = async (params: ItemCreateParameter): Promise<void> => {
-    await fetch("/api/item/new", {
+    const res = await fetch("/api/item/new", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(params),
     });
+    if (!res.ok) {
+      throw new Error(res.statusText);
+      return;
+    }
   };
   return {
     getItemList,

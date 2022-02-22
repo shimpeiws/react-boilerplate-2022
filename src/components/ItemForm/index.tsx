@@ -18,7 +18,7 @@ export const ItemForm = (): ReactElement => {
   } = useForm({
     resolver: zodResolver(schema),
   });
-  const { createItem } = useItemCreate();
+  const { createItem, errors: itemCreateErrors } = useItemCreate();
   const router = useRouter();
 
   const onSubmit = async (data: z.infer<typeof schema>) => {
@@ -32,6 +32,10 @@ export const ItemForm = (): ReactElement => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <p>Item/New</p>
+      {itemCreateErrors.length > 0 &&
+        itemCreateErrors.map((error, i) => {
+          return <p key={i}>{error}</p>;
+        })}
       <div>
         <p>name</p>
         <input data-testid="input-name" {...register("name")} />
