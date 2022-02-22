@@ -15,7 +15,6 @@ export const useItemCreate = () => {
     try {
       await itemRepository.postItem(params);
     } catch (error) {
-      console.info("error", error);
       setErrors([...errors, "Failed when post item"]);
       return;
     }
