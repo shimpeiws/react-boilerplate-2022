@@ -9,5 +9,10 @@ module.exports = {
   setupFilesAfterEnv: [
     "<rootDir>/jest-setup.ts"
   ],
-  testPathIgnorePatterns: ["<rootDir>/__tests__/util/"]
+  testPathIgnorePatterns: ["<rootDir>/__tests__/util/"],
+  collectCoverage: true,
+  collectCoverageFrom: [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+  ]
 };
