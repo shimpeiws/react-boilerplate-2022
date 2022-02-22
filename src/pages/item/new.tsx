@@ -1,8 +1,8 @@
 import React from "react";
-import { Header } from "../../components/header";
 import { ItemForm } from "../../components/ItemForm";
+import { Header } from "../../components/header";
 
-export default function Index() {
+export default function New() {
   return (
     <div>
       <Header />

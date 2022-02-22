@@ -1,7 +1,7 @@
 import React from "react";
-import { useUserState, useUserMutators } from "../../globalStates/user";
-import { UserRole, roleName } from "../../models/User";
 import { Header } from "../../components/header";
+import { useUserState, useUserMutators } from "../../globalStates/User";
+import { UserRole, roleName } from "../../models/User";
 
 export default function Index() {
   const userState = useUserState();
@@ -41,7 +41,7 @@ export default function Index() {
         <p>Role</p>
         <select
           onChange={(e) => {
-            setRole(e.target.value);
+            setRole(e.target.value as UserRole);
           }}
         >
           <option value={UserRole.ADMIN} selected={role === UserRole.ADMIN}>

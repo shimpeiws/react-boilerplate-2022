@@ -1,7 +1,7 @@
-import { useItemRepository } from "../../repositories/ItemRepository";
-import { Item } from "../../models/Item";
-import { generateItemDetailKey } from "./itemCacheKeyGenerator";
 import useSWR from "swr";
+import { Item } from "../../models/Item";
+import { useItemRepository } from "../../repositories/ItemRepository";
+import { generateItemDetailKey } from "./itemCacheKeyGenerator";
 
 type ItemDetailQuery = {
   id: number;

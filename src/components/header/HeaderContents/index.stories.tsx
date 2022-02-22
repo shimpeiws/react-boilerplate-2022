@@ -1,5 +1,5 @@
-import { HeaderContents } from "./index";
 import { User, UserRole } from "./../../../models/User";
+import { HeaderContents } from "./index";
 
 const exportObject = {
   component: HeaderContents,

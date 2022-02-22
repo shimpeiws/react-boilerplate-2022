@@ -1,7 +1,8 @@
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
 import { useRouter } from "next/router";
+import { ReactElement } from "react";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
 import { useItemCreate } from "../../usecases/Item/useItemCreate";
 
 const schema = z.object({
@@ -17,11 +18,10 @@ export const ItemForm = (): ReactElement => {
   } = useForm({
     resolver: zodResolver(schema),
   });
-  const { createItem } = useItemCreate();
+  const { createItem, errors: itemCreateErrors } = useItemCreate();
   const router = useRouter();
 
   const onSubmit = async (data: z.infer<typeof schema>) => {
-    console.log("data", data);
     await createItem({
       name: data.name,
       description: data.description,
@@ -32,17 +32,21 @@ export const ItemForm = (): ReactElement => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <p>Item/New</p>
+      {itemCreateErrors.length > 0 &&
+        itemCreateErrors.map((error, i) => {
+          return <p key={i}>{error}</p>;
+        })}
       <div>
         <p>name</p>
-        <input {...register("name")} />
+        <input data-testid="input-name" {...register("name")} />
         {errors.name && <p>{errors.name.message}</p>}
       </div>
       <div>
         <p>description</p>
-        <input {...register("description")} />
+        <input data-testid="input-description" {...register("description")} />
         {errors.description && <p>{errors.description.message}</p>}
       </div>
-      <input type="submit" />
+      <input data-testid="submit-button" type="submit" />
     </form>
   );
 };

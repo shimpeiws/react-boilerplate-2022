@@ -1,7 +1,7 @@
-import { useRouter } from "next/router";
 import Link from "next/link";
-import { Header } from "../../components/header";
+import { useRouter } from "next/router";
 import { ItemDetail } from "../../components/ItemDetail";
+import { Header } from "../../components/header";
 
 export default function Detail() {
   const router = useRouter();
@@ -11,7 +11,7 @@ export default function Detail() {
     <div>
       <Header />
       <Link href="/item">BackToIndex</Link>
-      <ItemDetail id={id} />
+      <ItemDetail id={id as unknown as number} />
     </div>
   );
 }

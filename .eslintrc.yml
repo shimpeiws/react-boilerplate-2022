@@ -2,12 +2,28 @@ root: true
 parser: "@typescript-eslint/parser"
 plugins:
   - "@typescript-eslint"
+  - import
+  - unused-imports
   - jest
+env:
+  jest/globals: true
 extends:
   - eslint:recommended
   - next
   - next/core-web-vitals
   - plugin:@typescript-eslint/eslint-recommended
   - plugin:@typescript-eslint/recommended
+  - plugin:import/errors
   - plugin:jest/recommended
   - prettier
+settings:
+  import/resolver:
+    node:
+      extensions:
+        - .ts
+        - .tsx
+rules:
+  sort-imports: 0
+  import/order: [2, { "alphabetize": { "order": "asc" } }]
+  "@typescript-eslint/no-unused-vars": "off"
+  unused-imports/no-unused-imports-ts: "error"

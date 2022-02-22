@@ -41,7 +41,7 @@ export const useUserMutators = () => {
   );
 
   const setLanguage = useCallback(
-    (language: Language) =>
+    (language: Languages) =>
       setState((previousState: UserState) => {
         return {
           ...previousState,

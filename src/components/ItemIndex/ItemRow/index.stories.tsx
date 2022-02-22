@@ -1,5 +1,5 @@
-import { ItemRow } from "./index";
 import { Item } from "./../../../models/Item";
+import { ItemRow } from "./index";
 
 const exportObject = {
   component: ItemRow,

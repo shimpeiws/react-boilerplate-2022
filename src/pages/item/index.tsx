@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { Header } from "../../components/header";
 import { ItemIndex } from "../../components/ItemIndex";
+import { Header } from "../../components/header";
 
 export default function Index() {
   return (
