@@ -16,6 +16,7 @@ export default function Index() {
       <Text text="bar" />
       <br />
       <Image src="/next.png" alt="next" width="1200" height="719" />
+      <Image src="/next-svg.svg" alt="next" width="1000" height="600" />
     </div>
   );
 }
